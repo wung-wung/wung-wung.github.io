@@ -20217,6 +20217,15 @@ body[data-type="album"] #page .page-title {
   }
 }
 
+
+body {
+  background: url("https://origin.picgo.net/2025/11/01/house2f96ef89a80aefa1.jpeg") no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+
 h1#site-title {
   font-size: 3em !important;
 }
@@ -20433,6 +20442,9 @@ html.hide-aside .layout > div:first-child {
     opacity: 1;
   }
 }
+
+
+
 
 #aside-content .card-widget#card-wechat {
   background: #57bd6a;
