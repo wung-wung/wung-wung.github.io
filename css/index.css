@@ -2967,7 +2967,7 @@ a:hover {
 #site-name,
 #aside-content .author-info__name,
 #aside-content .author-info__description {
-  font-family: PingFang SC, 'Hiragino Sans GB', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
+  font-family: jie, 'Hiragino Sans GB', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
 }
 .is-center {
   text-align: center;
@@ -3318,7 +3318,7 @@ figure.highlight pre .javascript .function {
 #article-container pre,
 #article-container code {
   font-size: var(--global-font-size);
-  font-family: consolas, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif !important;
+  font-family: jie, Menlo, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif !important;
 }
 #article-container code {
   padding: 2px 4px;
@@ -3713,7 +3713,7 @@ figure.highlight pre .javascript .function {
   height: 100%;
   vertical-align: top;
   text-align: center;
-  font-family: PingFang SC, 'Hiragino Sans GB', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
+  font-family: jie, 'Hiragino Sans GB', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
 }
 @media screen and (max-width: 768px) {
   .error404 #error-wrap .error-content .error-info {
@@ -20480,6 +20480,18 @@ html.hide-aside .layout > div:first-child {
   }
 }
 
+@font-face {
+  /* 为载入的字体取名字(随意) */
+  font-family: 'jie';	
+  /* 字体文件地址(相对或者绝对路径都可以) */
+  src: url(/font/JieJieGaoSheng-YingXinChun-2.ttf);
+  /* 定义加粗样式(加粗多少) */
+  font-weight: normal;
+  /* 定义字体样式(斜体/非斜体) */
+  font-style: normal;
+  /* 定义显示样式 */
+  font-display: block;
+}
 
 
 
