@@ -2819,7 +2819,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: jie;
+  font-family: kai;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -8660,7 +8660,7 @@ body:has(#console.show) #nav-music {
   color: var(--anzhiyu-lighttext);
 }
 #tag #tag-page-tags a {
-  font-family: jie;
+  font-family: kai;
   font-size: 0.9em;
 }
 #tag #tag-page-tags a:hover {
@@ -8679,7 +8679,7 @@ span.categoryes-punctuation .icon-biaoqian {
   font-size: 13px;
 }
 .tagsPageCount {
-  font-family: jie;
+  font-family: kai;
 }
 [data-theme="light"] #post .tag_share .post-meta__box__tags span.tagsPageCount {
   background-color: transparent;
@@ -8972,7 +8972,7 @@ h1.page-title + .tag-cloud-list {
   padding: 0.5rem;
   text-align: center;
   font-size: 14px;
-  font-family: jie;
+  font-family: kai;
 }
 @media screen and (max-width: 768px) {
   #error-wrap .error-content .error-info {
@@ -20468,6 +20468,21 @@ html.hide-aside .layout > div:first-child {
   /* 定义显示样式 */
   font-display: block;
 }
+
+
+@font-face {
+  /* 为载入的字体取名字(随意) */
+  font-family: 'kai';	
+  /* 字体文件地址(相对或者绝对路径都可以) */
+  src: url(/font/LXGWWenKaiMono-Regular.ttf);
+  /* 定义加粗样式(加粗多少) */
+  font-weight: normal;
+  /* 定义字体样式(斜体/非斜体) */
+  font-style: normal;
+  /* 定义显示样式 */
+  font-display: block;
+}
+
 
 #aside-content .card-widget#card-wechat {
   background: #57bd6a;
