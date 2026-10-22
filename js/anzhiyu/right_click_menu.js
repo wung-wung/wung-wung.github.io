@@ -416,6 +416,29 @@ function addRightMenuClickEvent() {
 
   document.getElementById("menu-commentBarrage").addEventListener("click", anzhiyu.switchCommentBarrage);
 
+  const fullscreenText = document.getElementById("menu-fullscreen-text");
+  const updateFullscreenText = () => {
+    if (fullscreenText) {
+      fullscreenText.textContent = document.fullscreenElement ? "退出全屏" : "进入全屏";
+    }
+  };
+
+  document.getElementById("menu-fullscreen").addEventListener("click", async function () {
+    rm.hideRightMenu();
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else {
+        await document.documentElement.requestFullscreen();
+      }
+    } catch (error) {
+      console.error("切换全屏状态失败:", error);
+      anzhiyu.snackbarShow("无法切换全屏，请检查浏览器权限");
+    }
+  });
+  document.addEventListener("fullscreenchange", updateFullscreenText);
+  updateFullscreenText();
+
   document.getElementById("rightmenu-mask").addEventListener("click", rm.hideRightMenu);
 
   document.getElementById("rightmenu-mask").addEventListener("contextmenu", function (event) {
