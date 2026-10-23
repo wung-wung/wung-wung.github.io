@@ -482,3 +482,16 @@
     width: calc(100% - 16px);
   }
 }
+
+/* Keep the author avatar visible instead of revealing the card description on hover */
+#aside-content .card-info:hover .author-info-avatar {
+  opacity: 1;
+  transform: scale(1);
+}
+#aside-content .card-info:hover .author-info__description {
+  opacity: 0;
+}
+#aside-content .card-info:hover .author-status {
+  opacity: 1;
+  transform: scale(1);
+}
