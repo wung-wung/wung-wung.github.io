@@ -1152,8 +1152,13 @@ const anzhiyu = {
   // 创建二维码
   qrcodeCreate: function () {
     if (document.getElementById("qrcode")) {
+      if (typeof QRCode !== "function") {
+        console.warn("QRCode library is unavailable; skipping QR code generation.");
+        return;
+      }
+
       document.getElementById("qrcode").innerHTML = "";
-      var qrcode = new QRCode(document.getElementById("qrcode"), {
+      new QRCode(document.getElementById("qrcode"), {
         text: window.location.href,
         width: 250,
         height: 250,
