@@ -495,3 +495,40 @@
   opacity: 1;
   transform: scale(1);
 }
+/* Teal cursor trail */
+@media (pointer: fine) {
+  * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'%3E%3Ccircle cx='4' cy='4' r='4' fill='rgb(57%2C197%2C187)'/%3E%3C/svg%3E")
+        4 4,
+      auto;
+  }
+
+  #cursor {
+    position: fixed;
+    z-index: 10086;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgb(57, 197, 187);
+    opacity: 0.25;
+    pointer-events: none;
+    transition:
+      background 0.2s ease-in-out,
+      opacity 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+  }
+
+  #cursor.hidden {
+    opacity: 0;
+  }
+
+  #cursor.hover {
+    opacity: 0.1;
+    transform: scale(2.5);
+  }
+
+  #cursor.active {
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+}
