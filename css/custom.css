@@ -432,6 +432,12 @@
     linear-gradient(rgba(25, 25, 25, 0.7), rgba(25, 25, 25, 0.7)),
     url("https://s41.ax1x.com/2026/10/22/pnBLvm6.jpg") !important;
 }
+#aside-content > .card-widget.card-info {
+  background-size: 100% 100%, cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat, no-repeat !important;
+  animation: none !important;
+}
 
 #newYear {
   background-color: rgba(25, 26, 27, 0.3) !important;
