@@ -352,7 +352,127 @@ const anzhiyu = {
       pageHeaderEl.classList.add("nav-visible");
     }
   },
-  // 下载图片
+  initAlbumPagination: () => {
+    document.querySelectorAll("#album_detail .album-gallery").forEach(gallery => {
+      const grid = gallery.querySelector(".album-gallery-grid");
+      const pagination = gallery.querySelector(".album-pagination");
+      if (!grid || !pagination || gallery.dataset.paginationInitialized) return;
+      gallery.dataset.paginationInitialized = "true";
+
+      const initialize = () => {
+        const pageSize = Number(grid.dataset.pageSize);
+        const items = Array.from(grid.querySelectorAll(".album-gallery-item"));
+        if (!Number.isInteger(pageSize) || pageSize < 1) {
+          console.error("相册分页的每页图片数无效:", grid.dataset.pageSize);
+          return;
+        }
+
+        if (items.length === 0) {
+          const status = document.createElement("p");
+          status.className = "album-gallery-status";
+          status.textContent = "暂时没有图片";
+          grid.appendChild(status);
+        }
+
+        let currentPage = 1;
+        const render = () => {
+          const pageCount = Math.ceil(items.length / pageSize);
+          currentPage = Math.min(currentPage, Math.max(pageCount, 1));
+          items.forEach((item, index) => {
+            item.hidden = Math.floor(index / pageSize) + 1 !== currentPage;
+          });
+          pagination.replaceChildren();
+          pagination.hidden = pageCount < 2;
+          if (pageCount < 2) return;
+
+          const addButton = (label, page, ariaLabel, current = false) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = label;
+            button.setAttribute("aria-label", ariaLabel);
+            if (current) button.setAttribute("aria-current", "page");
+            button.addEventListener("click", () => {
+              currentPage = page;
+              render();
+            });
+            pagination.appendChild(button);
+          };
+
+          if (currentPage > 1) {
+            addButton("‹", currentPage - 1, "上一页");
+          }
+
+          const visiblePages = Array.from(
+            new Set([1, currentPage - 1, currentPage, currentPage + 1, pageCount])
+          )
+            .filter(page => page >= 1 && page <= pageCount)
+            .sort((a, b) => a - b);
+
+          let previousPage = 0;
+          visiblePages.forEach(page => {
+            if (page - previousPage > 2) {
+              const ellipsis = document.createElement("span");
+              ellipsis.className = "album-pagination-ellipsis";
+              ellipsis.textContent = "…";
+              ellipsis.setAttribute("aria-hidden", "true");
+              pagination.appendChild(ellipsis);
+            } else if (page - previousPage === 2) {
+              addButton(String(page - 1), page - 1, `第 ${page - 1} 页`);
+            }
+            addButton(String(page), page, `第 ${page} 页`, page === currentPage);
+            previousPage = page;
+          });
+
+          if (currentPage < pageCount) {
+            addButton("›", currentPage + 1, "下一页");
+          }
+        };
+
+        anzhiyu.loadLightbox(grid.querySelectorAll(".album-gallery-item img"));
+        render();
+      };
+
+      const source = grid.querySelector(".album-gallery-source");
+      if (!source) {
+        initialize();
+        return;
+      }
+
+      fetch(source.dataset.url)
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
+        .then(images => {
+          if (!Array.isArray(images)) throw new TypeError("相册图片数据必须是数组");
+          const fragment = document.createDocumentFragment();
+          images.forEach(image => {
+            if (!image || typeof image.url !== "string" || !image.url) {
+              throw new TypeError("相册图片数据缺少有效的 url");
+            }
+            const item = document.createElement("div");
+            item.className = "album-gallery-item";
+            const img = document.createElement("img");
+            img.src = image.url;
+            img.alt = image.alt || image.title || "";
+            img.title = image.title || image.alt || "";
+            img.loading = "lazy";
+            item.appendChild(img);
+            fragment.appendChild(item);
+          });
+          grid.replaceChildren(fragment);
+          initialize();
+        })
+        .catch(error => {
+          console.error("加载相册图片失败:", error);
+          const status = document.createElement("p");
+          status.className = "album-gallery-status";
+          status.textContent = "相册图片加载失败，请稍后重试";
+          grid.replaceChildren(status);
+        });
+    });
+  },
+  //下载图片
   downloadImage: function (imgsrc, name) {
     //下载图片地址和图片名
     rm.hideRightMenu();

@@ -538,3 +538,26 @@
     transform: scale(0.5);
   }
 }
+
+.author-content-item.comic-content .comic-box.single-comic {
+  width: 100%;
+  left: 0;
+  transform: none;
+}
+
+.author-content-item.comic-content .comic-box.single-comic .comic-item,
+.author-content-item.comic-content .comic-box.single-comic .comic-item:hover {
+  width: 100%;
+  transform: none;
+}
+
+.author-content-item.comic-content .comic-box.single-comic .comic-item .comic-item-cover {
+  left: 0;
+  width: 100%;
+  transform: none;
+}
+
+.author-content-item.comic-content .comic-box.single-comic .comic-item .comic-item-cover img {
+  width: 100%;
+  object-fit: cover;
+}
