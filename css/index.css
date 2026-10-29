@@ -21495,7 +21495,7 @@ html.hide-aside .layout > div:first-child {
 
 /* 全局背景图片 */
 body {
-  background: url('https://origin.picgo.net/2025/11/27/skyc1b1f235d9baafda.jpeg') top / cover no-repeat;
+  /* 原背景图已失效：背景改由 _config.anzhiyu.yml 的 background 注入到 body 内联样式 */
   background-attachment: fixed !important;
   background-position: center center !important;
   height: 100%;
